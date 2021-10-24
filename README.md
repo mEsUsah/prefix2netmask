@@ -1,6 +1,6 @@
 # Simple tool to learn converting IPv4 prefix to netmask #
 
-Written while procratinating for the CCNA exam in 2021.
+Written while procrastinating for the CCNA exam in 2021.
 
 A work in progress. 
 
