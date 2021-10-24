@@ -46,7 +46,21 @@
 <body style="background-color: gray; color: white">
     <h1>Simple netmask translator training</h1>
     <p>Find the correct subnet mask based on the IP address and prefix</p>
+    <div>
+        <input type="radio" name="subnetting__level" id="subnetting__level--1" value="3" checked>
+        <label for="subnetting__level--1">Level 1 (Class C Networks)</label>
+    </div>
+    <div>
+        <input type="radio" name="subnetting__level" id="subnetting__level--2" value="2">
+        <label for="subnetting__level--2">Level 2 (Class B Networks)</label>
+    </div>
+    <div>
+        <input type="radio" name="subnetting__level" id="subnetting__level--3" value="1">
+        <label for="subnetting__level--3">Level 3 (Class A Networks)</label>
+    </div>
     <pre style="background-color: #3c3f50; padding: 10px; width: fit-content; border-radius: 4px;" id="subnetting__address"></pre>
+
+    </div>
     <input type="text" name="" id="subnetting__input">
     <button id="subnetting__checkbutton">Check!</button>
     <br>

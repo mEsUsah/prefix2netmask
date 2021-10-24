@@ -1,10 +1,13 @@
 let userInput = document.getElementById("subnetting__input");
 let assignmentText = document.getElementById("subnetting__address");
 let checkButton = document.getElementById("subnetting__checkbutton");
+let difficultySelector = document.querySelectorAll('input[name="subnetting__level"]');
 let alerts = document.getElementById("subnetting__alerts");
 let attemptsDisplay = document.getElementById("subnetting__notications--attempts");
 let scoreDisplay = document.getElementById("subnetting__notications--score");
 
+
+//console.log(difficultySelector);
 let netmaskArray = [
     0,
     128,
@@ -24,14 +27,17 @@ let prefixOutput;
 let addressOutput;
 let netmask;
 let userInputReading;
+let networkClass = 3;
 
-function generateAssignment(){
+function generateAssignment(networkClass){
     octetOne = Math.round(Math.random() * 255);
     octetTwo = Math.round(Math.random() * 255);
     octetThree = Math.round(Math.random() * 255);
     octetFour = Math.round(Math.random() * 255);
     prefix = Math.round(Math.random() * 6); // class C addresses.
-    prefixOutput = prefix + 24;
+
+
+    prefixOutput = prefix + (8*networkClass);
     
     addressOutput = octetOne + "." + octetTwo + "." + octetThree + "." + octetFour + "/" + prefixOutput;
     assignmentText.innerText = addressOutput;
@@ -41,6 +47,10 @@ function gradeAnswer(){
     userInputReading = userInput.value;
     if (prefixOutput >= 24) {
         netmask = "255.255.255." + netmaskArray[prefix];
+    } else if (prefixOutput >=16) {
+        netmask = "255.255." + netmaskArray[prefix] + ".0";
+    } else {
+        netmask = "255." + netmaskArray[prefix] + ".0.0";
     }
     if (userInputReading == netmask){
         attempts++;
@@ -54,7 +64,7 @@ function gradeAnswer(){
 
 function checkAnswer(){
     if (gradeAnswer()){
-        generateAssignment();
+        generateAssignment(networkClass);
         displayCorrect();
         userInput.value = "";
     } else {
@@ -78,11 +88,21 @@ function displayError(){
     }, 1000);
 }
 
-generateAssignment();
+generateAssignment(3);
 
 checkButton.addEventListener('click', ()=>{
     checkAnswer();
 });
+
+difficultySelector.forEach((element)=>{
+    element.addEventListener("change", () => {
+        if (element.checked == true){
+            networkClass = element.value;
+            generateAssignment(networkClass);
+        }
+    })
+})
+
 
 window.addEventListener('keydown', (event)=>{
     if (event.key == "Enter"){
