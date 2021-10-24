@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetting</title>
+    <style>
+        #subnetting__input{
+            background-color: rgb(223, 223, 223);
+            transition: all 0.2s;
+        }
+
+        #subnetting__input.correct {
+            background-color: rgb(81, 190, 81);
+        }
+
+        #subnetting__input.error {
+            animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            background-color: rgb(184, 121, 121);
+          }
+          
+          @keyframes shake {
+            10%, 90% {
+              transform: translate3d(-1px, 0, 0);
+            }
+            
+            20%, 80% {
+              transform: translate3d(2px, 0, 0);
+            }
+          
+            30%, 50%, 70% {
+              transform: translate3d(-4px, 0, 0);
+            }
+          
+            40%, 60% {
+              transform: translate3d(4px, 0, 0);
+            }
+          }
+
+    </style>
+</head>
+<body style="background-color: gray; color: white">
+    <h1>Simple netmask translator training</h1>
+    <p>Find the correct subnet mask based on the IP address and prefix</p>
+    <pre style="background-color: #3c3f50; padding: 10px; width: fit-content; border-radius: 4px;" id="subnetting__address"></pre>
+    <input type="text" name="" id="subnetting__input">
+    <button id="subnetting__checkbutton">Check!</button>
+    <br>
+
+    <div style="color: white; background-color: rgb(73, 73, 167); display:inline-block; padding: 10px; margin-top: 20px; border-radius: 4px;" id="subnetting__notications">
+        <span id="subnetting__notications--score">0</span> / <span id="subnetting__notications--attempts">0</span>
+    </div>
+    
+    <script src="subnetting.js"></script>
+</body>
+</html>
