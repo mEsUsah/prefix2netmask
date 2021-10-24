@@ -12,4 +12,4 @@ It should run fine in all modern web browsers.
 
 ## Further development ##
 If anyone wants to contribute to this project. please feel free to ask me! 
-This was created i a couple of hours.
+This was created in a couple of hours. So bugs should be expected.
