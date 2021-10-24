@@ -6,8 +6,6 @@ let alerts = document.getElementById("subnetting__alerts");
 let attemptsDisplay = document.getElementById("subnetting__notications--attempts");
 let scoreDisplay = document.getElementById("subnetting__notications--score");
 
-
-//console.log(difficultySelector);
 let netmaskArray = [
     0,
     128,
@@ -37,8 +35,7 @@ function generateAssignment(networkClass){
     octetTwo = Math.round(Math.random() * 255);
     octetThree = Math.round(Math.random() * 255);
     octetFour = Math.round(Math.random() * 255);
-    prefix = Math.round(Math.random() * 6); // class C addresses.
-
+    prefix = Math.round(Math.random() * 6);
 
     prefixOutput = prefix + (8*networkClass);
     
@@ -91,8 +88,10 @@ function displayError(){
     }, 1000);
 }
 
-generateAssignment(0); // defalt value
+generateAssignment(0); // default value
 
+
+/*-------Events------- */
 checkButton.addEventListener('click', ()=>{
     checkAnswer();
 });
