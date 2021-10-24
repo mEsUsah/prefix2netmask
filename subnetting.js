@@ -30,6 +30,9 @@ let userInputReading;
 let networkClass = 3;
 
 function generateAssignment(networkClass){
+    if (networkClass == 0){
+        networkClass = Math.ceil(Math.random()*3);
+    }
     octetOne = Math.round(Math.random() * 255);
     octetTwo = Math.round(Math.random() * 255);
     octetThree = Math.round(Math.random() * 255);
@@ -88,7 +91,7 @@ function displayError(){
     }, 1000);
 }
 
-generateAssignment(3);
+generateAssignment(0); // defalt value
 
 checkButton.addEventListener('click', ()=>{
     checkAnswer();
