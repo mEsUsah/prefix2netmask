@@ -2,6 +2,7 @@ let userInput = document.getElementById("subnetting__input");
 let assignmentText = document.getElementById("subnetting__address");
 let checkButton = document.getElementById("subnetting__checkbutton");
 let difficultySelector = document.querySelectorAll('input[name="subnetting__level"]');
+let directionSelector = document.querySelectorAll('input[name="subnetting__direction"]');
 let alerts = document.getElementById("subnetting__alerts");
 let attemptsDisplay = document.getElementById("subnetting__notications--attempts");
 let scoreDisplay = document.getElementById("subnetting__notications--score");
@@ -26,8 +27,9 @@ let addressOutput;
 let netmask;
 let userInputReading;
 let networkClass = 3;
+let conversionDirection = 0;
 
-function generateAssignment(networkClass){
+function generatePrefixAndMask(networkClass){
     if (networkClass == 0){
         networkClass = Math.ceil(Math.random()*3);
     }
@@ -38,13 +40,7 @@ function generateAssignment(networkClass){
     prefix = Math.round(Math.random() * 6);
 
     prefixOutput = prefix + (8*networkClass);
-    
-    addressOutput = octetOne + "." + octetTwo + "." + octetThree + "." + octetFour + "/" + prefixOutput;
-    assignmentText.innerText = addressOutput;
-}
 
-function gradeAnswer(){
-    userInputReading = userInput.value;
     if (prefixOutput >= 24) {
         netmask = "255.255.255." + netmaskArray[prefix];
     } else if (prefixOutput >=16) {
@@ -52,7 +48,29 @@ function gradeAnswer(){
     } else {
         netmask = "255." + netmaskArray[prefix] + ".0.0";
     }
-    if (userInputReading == netmask){
+
+    if(conversionDirection == 0){
+        addressOutput = "IP: " + octetOne + "." + octetTwo + "." + octetThree + "." + octetFour + "/" + prefixOutput;
+    } else {
+        addressOutput = "IP address: " + octetOne + "." + octetTwo + "." + octetThree + "." + octetFour + "\nNetwork mask: " + netmask;
+    }
+}
+
+function generateAssignment(networkClass){
+    generatePrefixAndMask(networkClass);
+    assignmentText.innerText = addressOutput;
+}
+
+function gradeAnswer(){
+    userInputReading = userInput.value;
+    let correctAnswer;
+    if(conversionDirection == 0) {
+        correctAnswer = netmask;
+    } else {
+        correctAnswer = prefixOutput;
+    }
+
+    if (userInputReading == correctAnswer){
         attempts++;
         score++;
         return true;
@@ -100,6 +118,15 @@ difficultySelector.forEach((element)=>{
     element.addEventListener("change", () => {
         if (element.checked == true){
             networkClass = element.value;
+            generateAssignment(networkClass);
+        }
+    })
+})
+
+directionSelector.forEach((element)=>{
+    element.addEventListener("change", () => {
+        if (element.checked == true){
+            conversionDirection = element.value;
             generateAssignment(networkClass);
         }
     })
