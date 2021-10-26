@@ -1,6 +1,8 @@
 # Simple tool to learn converting IPv4 prefix to netmask #
 A quick and dirty learning tool written while procrastinating for the CCNA exam in 2021.
 
+With this app you can dry train on binary conversions from prefix to network mask or from network mask to prefix.
+
 Supports three difficulty levels based on class A, B and C subnetting.
 It also has a random difficulty that will give you prefixes from /8 to /30 to work on
 
