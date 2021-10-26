@@ -26,7 +26,7 @@ let prefixOutput;
 let addressOutput;
 let netmask;
 let userInputReading;
-let networkClass = 3;
+let networkClass = 0;
 let conversionDirection = 0;
 
 function generatePrefixAndMask(networkClass){
